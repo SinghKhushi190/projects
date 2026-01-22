@@ -1,4 +1,4 @@
 # projects
-*css pricing*
-*planets*
+*css pricing*,
+*planets*,
 *web design*
