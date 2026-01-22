@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Solar System with Animated Header</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow-x: hidden;
+      font-family: 'Times New Roman', serif;
+      color: #fff;
+    }
+
+    /* Header Text in Upper Left with Animation */
+    .header-text {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ffcc00;
+      text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900, 0 0 20px #ff6600;
+      animation: glowText 2s infinite alternate, floatText 3s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; }
+      to   { text-shadow: 0 0 15px #ffcc00, 0 0 25px #ff6600, 0 0 35px #ff3300; }
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Background Stars (3D effect) */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: transparent;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 4s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.3; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1.2); }
+    }
+
+    .solar {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      transform-style: preserve-3d;
+      transform: rotateX(25deg);
+      perspective: 1500px;
+    }
+
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe066, #ff4500);
+      box-shadow: 0 0 60px 30px rgba(255, 150, 0, 0.8),
+                  0 0 120px 60px rgba(255, 200, 100, 0.5);
+    }
+
+    .orbit {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotateOrbit linear infinite;
+    }
+
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      box-shadow: inset -6px -6px 15px rgba(0,0,0,0.8),
+                  0 0 20px rgba(255,255,255,0.2);
+    }
+
+    /* Planets */
+    .mercury { width: 18px; height: 18px; background: #aaa; }
+    .venus   { width: 28px; height: 28px; background: #d4a373; }
+    .earth   { width: 36px; height: 36px; background: radial-gradient(circle at 30% 30%, #2e8bff, #001d3d); }
+    .mars    { width: 30px; height: 30px; background: #ff4c29; }
+    .jupiter { width: 80px; height: 80px; background: #e3b778; }
+    .saturn  { width: 65px; height: 65px; background: #d9c18c; }
+    .uranus  { width: 55px; height: 55px; background: #5cd4d9; }
+    .neptune { width: 50px; height: 50px; background: #4466ff; }
+
+    /* Orbit sizes & speeds */
+    .mercury-orbit { width: 200px; height: 200px; animation-duration: 6s; }
+    .venus-orbit   { width: 300px; height: 300px; animation-duration: 10s; }
+    .earth-orbit   { width: 400px; height: 400px; animation-duration: 14s; }
+    .mars-orbit    { width: 480px; height: 480px; animation-duration: 18s; }
+    .jupiter-orbit { width: 600px; height: 600px; animation-duration: 22s; }
+    .saturn-orbit  { width: 720px; height: 720px; animation-duration: 26s; }
+    .uranus-orbit  { width: 840px; height: 840px; animation-duration: 30s; }
+    .neptune-orbit { width: 960px; height: 960px; animation-duration: 34s; }
+
+    @keyframes rotateOrbit {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .label {
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #eee;
+      text-shadow: 0 0 5px black;
+    }
+
+    /* Planet Info Section */
+    .info {
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .planet-info {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(0,0,0,0.6);
+      border-left: 4px solid #ffcc00;
+      border-radius: 8px;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .planet-info h2 {
+      margin: 0;
+      font-size: 22px;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ffcc00;
+      animation: glow 2s infinite alternate;
+    }
+
+    .planet-info p {
+      font-size: 16px;
+      color: #ddd;
+      line-height: 1.6;
+      text-align: justify;
+      animation: typing 6s steps(60, end);
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #ffcc00;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ffcc00; }
+      to   { text-shadow: 0 0 20px #ffaa00, 0 0 30px #ff6600; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to   { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Starfield -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Solar System -->
+  <div class="solar">
+    <div class="sun"></div>
+    <div class="orbit mercury-orbit"><div class="planet mercury"><div class="label">Mercury</div></div></div>
+    <div class="orbit venus-orbit"><div class="planet venus"><div class="label">Venus</div></div></div>
+    <div class="orbit earth-orbit"><div class="planet earth"><div class="label">Earth</div></div></div>
+    <div class="orbit mars-orbit"><div class="planet mars"><div class="label">Mars</div></div></div>
+    <div class="orbit jupiter-orbit"><div class="planet jupiter"><div class="label">Jupiter</div></div></div>
+    <div class="orbit saturn-orbit"><div class="planet saturn"><div class="label">Saturn</div></div></div>
+    <div class="orbit uranus-orbit"><div class="planet uranus"><div class="label">Uranus</div></div></div>
+    <div class="orbit neptune-orbit"><div class="planet neptune"><div class="label">Neptune</div></div></div>
+  </div>
+
+  <!-- Planet Info Section -->
+  <!-- <div class="info">
+    <div class="planet-info">
+      <h2>Mercury</h2>
+      <p>Mercury is the smallest planet in our solar system and the closest to the Sun. A year on Mercury is just 88 Earth days.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Venus</h2>
+      <p>Venus has a thick, toxic atmosphere that traps heat, making it the hottest planet in our solar system.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Earth</h2>
+      <p>Earth is the only known planet to support life, with abundant water, oxygen, and a protective atmosphere.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Mars</h2>
+      <p>Mars is known as the Red Planet because of its iron oxide surface. It has the largest volcano in the solar system.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Jupiter</h2>
+      <p>Jupiter is the largest planet in our solar system. It has a Great Red Spot — a giant storm lasting for centuries.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Saturn</h2>
+      <p>Saturn is famous for its stunning ring system, made up of ice and rock particles orbiting the planet.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Uranus</h2>
+      <p>Uranus rotates on its side, making it unique. It has faint rings and a blue-green colour due to methane in its atmosphere.</p>
+    </div>
+    <div class="planet-info">
+      <h2>Neptune</h2>
+      <p>Neptune is the windiest planet in the solar system, with storms and supersonic winds in its atmosphere.</p>
+    </div>
+  </div> -->
+
+  <script>
+    const starsContainer = document.getElementById("stars");
+    for (let i = 0; i < 200; i++) {
+      let star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = 2 + Math.random() * 4 + "s";
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
