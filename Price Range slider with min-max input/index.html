@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Slider</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+/* Transparent Background */
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.65)
+  );
+}
+
+/* Glass White Card */
+.wrapper{
+  width:420px;
+  padding:30px;
+  border-radius:20px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,215,0,0.3);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  text-align:center;
+}
+
+/* Heading */
+.wrapper h2{
+  color:#FFD700;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* Price Input Flex Center */
+.price-input{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin:30px 0;
+}
+
+/* Input Fields */
+.field{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.field span{
+  color:#FFD700;
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.field input{
+  width:140px;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,215,0,0.4);
+  background:rgba(255,255,255,0.12);
+  color:white;
+  text-align:center;
+  outline:none;
+  transition:0.3s;
+}
+
+.field input:focus{
+  border-color:#FFD700;
+  box-shadow:0 0 10px rgba(255,215,0,0.6);
+}
+
+/* Slider Track */
+.slider{
+  height:6px;
+  background:rgba(255,255,255,0.2);
+  border-radius:10px;
+  position:relative;
+}
+
+/* Golden Progress */
+.progress{
+  position:absolute;
+  height:100%;
+  background:linear-gradient(90deg,#FFD700,#FFC107);
+  border-radius:10px;
+}
+
+/* Range */
+.range-input{
+  position:relative;
+}
+
+.range-input input{
+  position:absolute;
+  width:100%;
+  top:-6px;
+  background:none;
+  pointer-events:none;
+}
+
+/* Golden Knob */
+.range-input input::-webkit-slider-thumb{
+  pointer-events:auto;
+  height:20px;
+  width:20px;
+  border-radius:50%;
+  background:#FFD700;
+  border:3px solid white;
+  -webkit-appearance:none;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(255,215,0,0.8);
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+  <h2>Price Range</h2>
+
+  <div class="price-input">
+    <div class="field">
+      <span>Min ₹</span>
+      <input type="number" class="input-min" value="2500" title="Minimum price" placeholder="Enter minimum price">
+    </div>
+
+    <div class="field">
+      <span>Max ₹</span>
+      <input type="number" class="input-max" value="8500">
+    </div>
+  </div>
+
+  <div class="slider">
+    <div class="progress"></div>
+  </div>
+
+  <div class="range-input">
+    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+    <input type="range" class="range-max" min="0" max="10000" value="8500" step="100">
+  </div>
+</div>
+</body>
+<script>
+    const rangeInput = document.querySelectorAll(".range-input input");
+const priceInput = document.querySelectorAll(".price-input input");
+const range = document.querySelector(".progress");
+
+let priceGap = 1000;
+
+priceInput.forEach(input => {
+  input.addEventListener("input", e => {
+
+    let minPrice = parseInt(priceInput[0].value);
+    let maxPrice = parseInt(priceInput[1].value);
+
+    if(maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max){
+
+      if(e.target.className === "input-min"){
+        rangeInput[0].value = minPrice;
+        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+      } 
+      else {
+        rangeInput[1].value = maxPrice;
+        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+      }
+
+    }
+  });
+});
+
+rangeInput.forEach(input => {
+  input.addEventListener("input", e => {
+
+    let minVal = parseInt(rangeInput[0].value);
+    let maxVal = parseInt(rangeInput[1].value);
+
+    if(maxVal - minVal < priceGap){
+
+      if(e.target.className === "range-min"){
+        rangeInput[0].value = maxVal - priceGap;
+      } else {
+        rangeInput[1].value = minVal + priceGap;
+      }
+
+    } else {
+
+      priceInput[0].value = minVal;
+      priceInput[1].value = maxVal;
+
+      range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+      range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+
+    }
+  });
+});
+</script>
+</html>
