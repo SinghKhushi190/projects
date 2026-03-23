@@ -8,3 +8,5 @@
 *4. price slider*
 
 # Python 
+# C++ 
+*here we are talking about c++ code.*
