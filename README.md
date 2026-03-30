@@ -8,6 +8,7 @@
 *4. price slider*
 
 # Python 
+*only basic python learn here.*
 # C++ 
 *here we are talking about c++ code.*
 # protfolio
