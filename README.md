@@ -1,4 +1,6 @@
 # projects
+<img width="1366" height="768" alt="Creating a README for a CSS project on GitHub is an essential step to ensure that users and collaborators understand your project&#39;s structure, purpose, and usage  Here’s a brief guide on what to i (3)" src="https://github.com/user-attachments/assets/1dfb435e-55b6-4c1b-b3d7-6908dda1f596" />
+
 *1.css pricing*
 </br>
 *2.planets*
