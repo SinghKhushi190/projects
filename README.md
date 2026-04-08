@@ -5,6 +5,17 @@
 *only basic python learn here.*
 # C++ 
 *here we are talking about c++ code.*
+
+#  Java
+ --> A simple and efficient Java-based project demonstrating core programming concepts such as object-oriented programming, exception handling, and modular design and also include some "DSA Problem".
+ 
+ ✅ Clean and readable code</br>
+ ✅ Object-Oriented Programming (OOP)</br>
+ ✅ Error & Exception Handling</br>
+ ✅ Easy to understand structure</br>
+ ✅ Beginner-friendly
+
+ 
 # protfolio
 * Honestly, My protfolio not completed.*
 
