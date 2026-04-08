@@ -13,7 +13,7 @@ This repository contains basic Python programs designed for beginners who are st
 # C++ 
 *here we are talking about c++ code.*
 
-#  Java
+# 📌 Java
  --> A simple and efficient Java-based project demonstrating core programming concepts such as object-oriented programming, exception handling, and modular design and also include some "DSA Problem".
  
  ✅ Clean and readable code</br>
