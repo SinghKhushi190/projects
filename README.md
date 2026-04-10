@@ -10,8 +10,14 @@ This repository contains basic Python programs designed for beginners who are st
 ✅ Easy to run and understand</br>
 ✅ Perfect for practice
 
-# C++ 
-*here we are talking about c++ code.*
+# 📌C++ 
+This repository contains basic C++ programs for beginners. It covers fundamental concepts of C++ programming with simple examples to help build a strong foundation.
+
+✅ Beginner-friendly code</br>
+✅ Easy to understand examples</br>
+✅ Covers core C++ concepts</br>
+✅ Well-structured programs</br>
+✅ Good for practice
 
 # 📌 Java
  --> A simple and efficient Java-based project demonstrating core programming concepts such as object-oriented programming, exception handling, and modular design and also include some "DSA Problem".
