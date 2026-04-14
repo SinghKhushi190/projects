@@ -27,15 +27,11 @@ This repository contains basic C++ programs for beginners. It covers fundamental
  ✅ Error & Exception Handling</br>
  ✅ Easy to understand structure</br>
  ✅ Beginner-friendly
-
  
-# protfolio
-* Honestly, My protfolio not completed.*
-
 *1.css pricing*
-</br>
+
 *2.planets*
-</br>
+
 *3.web design*
-</br>
+
 *4. price slider*
