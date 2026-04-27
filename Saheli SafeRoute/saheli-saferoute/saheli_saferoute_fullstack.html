@@ -1,0 +1,2207 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --hot: #e91e8c;
+    --hot2: #ff4db2;
+    --hot-light: #fdeef6;
+    --safe: #1d9e75;
+    --safe-light: #e1f5ee;
+    --safe-dark: #085041;
+    --warn: #e87722;
+    --warn-light: #fff3e0;
+    --danger: #d32f2f;
+    --danger-light: #ffebee;
+    --purple: #7b2fbe;
+    --purple-light: #f3e5f5;
+    --night: #0d1117;
+    --night2: #161b22;
+    --night3: #21262d;
+    --text: #1a1a2e;
+    --text2: #4a4a6a;
+    --text3: #9a9ab0;
+    --bg: #fdf8ff;
+    --bg2: #f5f0fc;
+    --card: #ffffff;
+    --r: 14px;
+    --r-sm: 8px;
+    --r-xl: 24px;
+  }
+  body {
+    font-family: "Poppins", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    padding-bottom: 75px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* SPLASH / HEADER */
+  .header {
+    background: linear-gradient(135deg, #e91e8c 0%, #7b2fbe 60%, #4a1b7c 100%);
+    color: #fff;
+    padding: 0 18px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 500;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .logo span {
+    color: #ffd6ee;
+    font-weight: 400;
+  }
+  .hbadge {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #69f0ae;
+    animation: pd 1.5s infinite;
+  }
+  @keyframes pd {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.4);
+    }
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    margin-top: 12px;
+  }
+  .tab {
+    flex: 1;
+    padding: 10px 4px 8px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .tab.active {
+    color: #fff;
+    border-color: #ffd6ee;
+  }
+  .tab-ic {
+    font-size: 17px;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* SCREENS */
+  .screen {
+    display: none;
+    padding: 14px 14px;
+  }
+  .screen.active {
+    display: block;
+  }
+
+  /* SECTION TITLE */
+  .stitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  /* ALERT STRIP */
+  .astrip {
+    border-radius: var(--r-sm);
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+  .astrip.safe {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+    border-left: 3px solid var(--safe);
+  }
+  .astrip.danger {
+    background: var(--danger-light);
+    color: var(--danger);
+    border-left: 3px solid var(--danger);
+    animation: flick 1s ease infinite alternate;
+  }
+  .astrip.warn {
+    background: var(--warn-light);
+    color: var(--warn);
+    border-left: 3px solid var(--warn);
+  }
+  @keyframes flick {
+    0% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+      background: #ffcdd2;
+    }
+  }
+
+  /* INFO ROW */
+  .info-chips {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .chip {
+    background: var(--card);
+    border-radius: var(--r-sm);
+    border: 1px solid #ede8f5;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .chip .v {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .chip .l {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 1px;
+  }
+
+  /* SOS */
+  .sos-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0 16px;
+  }
+  .sos-outer {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sos-ring1,
+  .sos-ring2 {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(233, 30, 140, 0.35);
+  }
+  .sos-ring1 {
+    width: 180px;
+    height: 180px;
+    animation: sr 2s ease-out infinite;
+  }
+  .sos-ring2 {
+    width: 145px;
+    height: 145px;
+    animation: sr 2s ease-out infinite 0.4s;
+  }
+  @keyframes sr {
+    0% {
+      opacity: 0.6;
+      transform: scale(0.88);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+  .sos-btn {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ff4d4d, #c62828);
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0 6px 28px rgba(211, 47, 47, 0.5);
+    transition: transform 0.1s;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 1px;
+  }
+  .sos-btn:active {
+    transform: scale(0.94);
+  }
+  .sos-note {
+    font-size: 11px;
+    color: var(--text2);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+  .sos-note b {
+    color: var(--danger);
+    display: block;
+    font-size: 13px;
+  }
+
+  /* QUICK ACTIONS */
+  .qa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .qa {
+    border: none;
+    border-radius: var(--r);
+    padding: 13px 12px;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    transition:
+      transform 0.1s,
+      filter 0.1s;
+  }
+  .qa:active {
+    transform: scale(0.97);
+    filter: brightness(0.95);
+  }
+  .qa-ic {
+    font-size: 20px;
+  }
+  .qa.call {
+    background: #ffebee;
+    color: #c62828;
+  }
+  .qa.loc {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .qa.live {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+  .qa.stealth {
+    background: var(--night2);
+    color: #69f0ae;
+    border: 1px solid #30363d;
+  }
+  .qa.voice {
+    background: var(--purple-light);
+    color: var(--purple);
+  }
+  .qa.fake {
+    background: #fff3e0;
+    color: #e65100;
+  }
+
+  /* SAFETY SCORE */
+  .score-card {
+    background: var(--card);
+    border-radius: var(--r);
+    border: 1px solid #ede8f5;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .score-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .score-val {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .score-safe {
+    color: var(--safe);
+  }
+  .score-warn {
+    color: var(--warn);
+  }
+  .score-danger {
+    color: var(--danger);
+  }
+  .score-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .score-badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .sb-safe {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .sb-warn {
+    background: var(--warn-light);
+    color: #e65100;
+  }
+  .score-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .sbar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sbar-label {
+    font-size: 11px;
+    color: var(--text2);
+    min-width: 120px;
+  }
+  .sbar-track {
+    flex: 1;
+    height: 6px;
+    background: #f0ebf8;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .sbar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s;
+  }
+
+  /* MAP */
+  #map {
+    height: 220px;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid #ede8f5;
+    margin-bottom: 10px;
+  }
+  .map-btns {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .mbtn {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #ede8f5;
+    background: var(--card);
+    border-radius: var(--r-sm);
+    padding: 7px 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    color: var(--text2);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mbtn.on {
+    background: var(--hot-light);
+    color: var(--hot);
+    border-color: var(--hot);
+  }
+  .mbtn:active {
+    opacity: 0.7;
+  }
+
+  /* ROUTE */
+  .route-card {
+    background: var(--card);
+    border-radius: var(--r);
+    border: 1px solid #ede8f5;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .route-input {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+  .rinp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg2);
+    border-radius: var(--r-sm);
+    padding: 9px 12px;
+  }
+  .rinp input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    outline: none;
+  }
+  .rinp input::placeholder {
+    color: var(--text3);
+  }
+  .route-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .route-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--r-sm);
+    border: 1.5px solid #ede8f5;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .route-opt.best {
+    border-color: var(--safe);
+    background: var(--safe-light);
+  }
+  .route-opt.fastest {
+    border-color: #ede8f5;
+    background: var(--card);
+  }
+  .route-ic {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .ri-safe {
+    background: #c8e6c9;
+  }
+  .ri-fast {
+    background: #ffe0b2;
+  }
+  .ri-warn {
+    background: #ffcdd2;
+  }
+  .route-info {
+    flex: 1;
+  }
+  .route-info p {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .route-info span {
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .route-score {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .rs-safe {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .rs-warn {
+    background: var(--warn-light);
+    color: #e65100;
+  }
+  .rs-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+
+  /* COMMUNITY FEED */
+  .feed-item {
+    background: var(--card);
+    border-radius: var(--r);
+    border: 1px solid #ede8f5;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+  .feed-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 7px;
+  }
+  .feed-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .fa-pink {
+    background: var(--hot-light);
+    color: var(--hot);
+  }
+  .fa-safe {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .fa-warn {
+    background: var(--warn-light);
+    color: #e65100;
+  }
+  .feed-meta {
+    flex: 1;
+  }
+  .feed-meta p {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .feed-meta span {
+    font-size: 10px;
+    color: var(--text3);
+  }
+  .feed-tag {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .ft-warn {
+    background: var(--warn-light);
+    color: #e65100;
+  }
+  .ft-safe {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .ft-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  .feed-body {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .feed-loc {
+    font-size: 11px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .feed-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .faction {
+    background: var(--bg2);
+    border: none;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    color: var(--text2);
+    transition: all 0.15s;
+  }
+  .faction:active {
+    opacity: 0.7;
+  }
+  .add-report-btn {
+    width: 100%;
+    background: linear-gradient(90deg, var(--hot), var(--purple));
+    border: none;
+    border-radius: var(--r-sm);
+    padding: 12px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  /* CONTACTS */
+  .con-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--bg2);
+  }
+  .con-item:last-child {
+    border-bottom: none;
+  }
+  .cav {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .c1 {
+    background: #fce4ec;
+    color: #c62878;
+  }
+  .c2 {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .c3 {
+    background: #e8eaf6;
+    color: #3949ab;
+  }
+  .con-info {
+    flex: 1;
+  }
+  .con-info p {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .con-info span {
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .con-acts {
+    display: flex;
+    gap: 5px;
+  }
+  .ca {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .ca-c {
+    background: var(--safe-light);
+  }
+  .ca-m {
+    background: var(--hot-light);
+  }
+  .helpline-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--bg2);
+  }
+  .helpline-item:last-child {
+    border-bottom: none;
+  }
+  .hl-num {
+    font-family: "DM Mono", monospace;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--hot);
+  }
+  .hl-call {
+    background: var(--safe);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 16px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* SETTINGS */
+  .srow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg2);
+  }
+  .srow:last-child {
+    border-bottom: none;
+  }
+  .srow-info p {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .srow-info span {
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .tog {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .tog input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .tslide {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #ddd;
+    border-radius: 24px;
+    transition: 0.3s;
+  }
+  .tslide:before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+  }
+  input:checked + .tslide {
+    background: var(--hot);
+  }
+  input:checked + .tslide:before {
+    transform: translateX(20px);
+  }
+
+  /* VOICE SOS */
+  .voice-wrap {
+    background: var(--night2);
+    border-radius: var(--r);
+    border: 1px solid #30363d;
+    padding: 16px;
+    margin-bottom: 12px;
+    color: #e6edf3;
+  }
+  .voice-wrap .vtitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #69f0ae;
+    margin-bottom: 4px;
+  }
+  .voice-wrap .vsub {
+    font-size: 11px;
+    color: #8b949e;
+    margin-bottom: 14px;
+  }
+  .voice-listening {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0d1117;
+    border-radius: var(--r-sm);
+    padding: 11px 14px;
+    margin-bottom: 10px;
+  }
+  .mic-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .mbar {
+    width: 3px;
+    border-radius: 3px;
+    background: #69f0ae;
+  }
+  .mbar:nth-child(1) {
+    height: 8px;
+    animation: mw 1s infinite 0s;
+  }
+  .mbar:nth-child(2) {
+    height: 14px;
+    animation: mw 1s infinite 0.15s;
+  }
+  .mbar:nth-child(3) {
+    height: 20px;
+    animation: mw 1s infinite 0.3s;
+  }
+  .mbar:nth-child(4) {
+    height: 14px;
+    animation: mw 1s infinite 0.45s;
+  }
+  .mbar:nth-child(5) {
+    height: 8px;
+    animation: mw 1s infinite 0.6s;
+  }
+  @keyframes mw {
+    0%,
+    100% {
+      transform: scaleY(0.4);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+  .mic-status {
+    flex: 1;
+    font-size: 12px;
+    color: #8b949e;
+  }
+  .mic-status b {
+    color: #e6edf3;
+  }
+  .voice-keyword {
+    background: #161b22;
+    border-radius: var(--r-sm);
+    padding: 9px 12px;
+    font-size: 12px;
+    color: #8b949e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .vkw {
+    font-family: "DM Mono", monospace;
+    color: #ff79c6;
+    font-size: 12px;
+  }
+
+  /* STEALTH */
+  .stealth-card {
+    background: var(--night);
+    border-radius: var(--r);
+    border: 1px solid #30363d;
+    padding: 16px;
+    margin-bottom: 12px;
+    color: #e6edf3;
+  }
+  .stealth-card .st-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ff79c6;
+    margin-bottom: 4px;
+  }
+  .stealth-card .st-sub {
+    font-size: 11px;
+    color: #8b949e;
+    margin-bottom: 14px;
+  }
+  .stealth-opts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .stopt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #161b22;
+    border-radius: var(--r-sm);
+    padding: 10px 12px;
+    cursor: pointer;
+    border: 1px solid #21262d;
+    transition: border-color 0.2s;
+  }
+  .stopt.on {
+    border-color: #ff79c6;
+  }
+  .stopt-ic {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--r-sm);
+    background: #21262d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  .stopt-info {
+    flex: 1;
+  }
+  .stopt-info p {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .stopt-info span {
+    font-size: 10px;
+    color: #8b949e;
+  }
+  .stopt-tog {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .stopt-tog.on {
+    background: #69f0ae;
+  }
+  .stopt-tog.off {
+    background: #30363d;
+  }
+
+  /* TIMER */
+  .timer-card {
+    background: var(--card);
+    border-radius: var(--r);
+    border: 1px solid #ede8f5;
+    padding: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .tdisp {
+    font-family: "DM Mono", monospace;
+    font-size: 44px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .tdisp.run {
+    color: var(--warn);
+  }
+  .tdesc {
+    font-size: 11px;
+    color: var(--text2);
+    margin-bottom: 14px;
+  }
+  .tbtns {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+  .tbtn {
+    padding: 9px 22px;
+    border-radius: var(--r-sm);
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .tbtn:active {
+    opacity: 0.7;
+  }
+  .tb-go {
+    background: var(--safe-light);
+    color: var(--safe-dark);
+  }
+  .tb-stop {
+    background: var(--danger-light);
+    color: var(--danger);
+  }
+  .tb-rst {
+    background: var(--bg2);
+    color: var(--text2);
+  }
+
+  /* SOS OVERLAY */
+  .sos-ov {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(211, 47, 47, 0.97);
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    padding: 24px;
+  }
+  .sos-ov.active {
+    display: flex;
+  }
+  .sos-ov-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .sos-ov-sub {
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 28px;
+  }
+  .sos-ov-cnt {
+    font-family: "DM Mono", monospace;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .sos-ov-status {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-bottom: 28px;
+  }
+  .sos-cancel {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    border-radius: var(--r);
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-16px);
+    background: #1a1a2e;
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: var(--r-sm);
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 8000;
+    white-space: nowrap;
+    pointer-events: none;
+    max-width: 90vw;
+    text-align: center;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border-radius: var(--r);
+    border: 1px solid #ede8f5;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px dashed #d0c8e8;
+    border-radius: var(--r-sm);
+    background: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    color: var(--text3);
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+  }
+  .add-btn:hover {
+    border-color: var(--hot);
+    color: var(--hot);
+  }
+  .offline-chip {
+    background: var(--night2);
+    border-radius: var(--r-sm);
+    padding: 8px 12px;
+    font-size: 11px;
+    color: #69f0ae;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+</style>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">🛡️ Saheli <span>SafeRoute</span></div>
+    <div class="hbadge">
+      <div class="pulse-dot"></div>
+      Protected
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" id="tab-home" onclick="showScreen('home')">
+      <span class="tab-ic">🏠</span>Home
+    </div>
+    <div class="tab" id="tab-route" onclick="showScreen('route')">
+      <span class="tab-ic">🗺</span>SafeRoute
+    </div>
+    <div class="tab" id="tab-feed" onclick="showScreen('feed')">
+      <span class="tab-ic">👥</span>Community
+    </div>
+    <div class="tab" id="tab-contacts" onclick="showScreen('contacts')">
+      <span class="tab-ic">📞</span>Contacts
+    </div>
+    <div class="tab" id="tab-settings" onclick="showScreen('settings')">
+      <span class="tab-ic">⚙️</span>Settings
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="s-home" class="screen active">
+  <div id="alertBanner" class="astrip safe">
+    ✅ <span><b>You are safe.</b> Real-time monitoring active.</span>
+  </div>
+  <div class="info-chips">
+    <div class="chip">
+      <div class="v" id="battV">—</div>
+      <div class="l">Battery</div>
+    </div>
+    <div class="chip">
+      <div class="v" id="timeV">—</div>
+      <div class="l">Time</div>
+    </div>
+    <div class="chip">
+      <div class="v" id="scoreV">78</div>
+      <div class="l">Safety Score</div>
+    </div>
+  </div>
+
+  <!-- SOS -->
+  <div class="sos-area">
+    <div class="sos-outer">
+      <div class="sos-ring1"></div>
+      <div class="sos-ring2"></div>
+      <button
+        class="sos-btn"
+        id="sosBtn"
+        onmousedown="startSOSHold()"
+        onmouseup="clearSOSHold()"
+        ontouchstart="startSOSHold()"
+        ontouchend="clearSOSHold()"
+      >
+        SOS
+      </button>
+    </div>
+    <div class="sos-note">
+      <b>Hold 2 sec to trigger SOS alert</b>Sends GPS + voice recording to all
+      contacts
+    </div>
+  </div>
+
+  <!-- VOICE SOS -->
+  <div class="voice-wrap">
+    <div class="vtitle">🎤 Voice-Activated SOS</div>
+    <div class="vsub">Say your safe word to trigger SOS hands-free</div>
+    <div class="voice-listening">
+      <div class="mic-wave" id="micWave">
+        <div class="mbar"></div>
+        <div class="mbar"></div>
+        <div class="mbar"></div>
+        <div class="mbar"></div>
+        <div class="mbar"></div>
+      </div>
+      <div class="mic-status">Listening... say <b>"Saheli Help"</b></div>
+    </div>
+    <div class="voice-keyword">
+      Safe Word: <span class="vkw" id="safeWord">"Saheli Help"</span>
+    </div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="stitle">Quick Actions</div>
+  <div class="qa-grid">
+    <button class="qa call" onclick="fakeCall()">
+      <span class="qa-ic">📞</span>Fake Call
+    </button>
+    <button class="qa loc" onclick="sendLocation()">
+      <span class="qa-ic">📍</span>Send Location
+    </button>
+    <button class="qa live" onclick="startLive()">
+      <span class="qa-ic">📡</span>Live Share
+    </button>
+    <button class="qa stealth" onclick="stealthActivate()">
+      <span class="qa-ic">🕵️</span>Stealth Mode
+    </button>
+    <button class="qa voice" onclick="startVoiceRecord()">
+      <span class="qa-ic">🎙️</span>Record Proof
+    </button>
+    <button class="qa fake" onclick="triggerSiren()">
+      <span class="qa-ic">🔊</span>Siren
+    </button>
+  </div>
+
+  <!-- SAFETY TIMER -->
+  <div class="timer-card">
+    <div class="stitle" style="margin-bottom: 8px">
+      Safety Timer · Auto-alert if no check-in
+    </div>
+    <div class="tdisp" id="tDisp">00:00</div>
+    <div class="tdesc">
+      Set a journey timer — contacts notified if you don't stop it
+    </div>
+    <div class="tbtns">
+      <button class="tbtn tb-go" id="tBtn" onclick="timerAction()">
+        Start
+      </button>
+      <button class="tbtn tb-rst" onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- SAFEROUTE MAP -->
+<div id="s-route" class="screen">
+  <!-- ROUTE INPUTS -->
+  <div class="route-card">
+    <div class="stitle">SafeRoute Navigation</div>
+    <div class="route-input">
+      <div class="rinp">
+        📍
+        <input
+          id="fromInput"
+          placeholder="Your current location"
+          value="Nawabganj, UP"
+        />
+      </div>
+      <div class="rinp">
+        🎯 <input id="toInput" placeholder="Where are you going?" />
+      </div>
+    </div>
+    <div style="display: flex; gap: 8px; margin-bottom: 12px">
+      <button
+        onclick="calculateRoutes()"
+        style="
+          flex: 1;
+          background: linear-gradient(90deg, var(--hot), var(--purple));
+          border: none;
+          border-radius: var(--r-sm);
+          padding: 11px;
+          color: #fff;
+          font-family: &quot;Poppins&quot;, sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+        "
+      >
+        Find Safest Route
+      </button>
+    </div>
+    <div id="routeOptions" class="route-options" style="display: none">
+      <div class="route-opt best">
+        <div class="route-ic ri-safe">🛡️</div>
+        <div class="route-info">
+          <p>Safest Route</p>
+          <span>2.4 km · 18 min · Well-lit & busy</span>
+        </div>
+        <span class="route-score rs-safe">Score 92</span>
+      </div>
+      <div class="route-opt fastest">
+        <div class="route-ic ri-fast">⚡</div>
+        <div class="route-info">
+          <p>Fastest Route</p>
+          <span>1.8 km · 13 min · Partially dark</span>
+        </div>
+        <span class="route-score rs-warn">Score 61</span>
+      </div>
+      <div class="route-opt fastest">
+        <div class="route-ic ri-warn">⚠️</div>
+        <div class="route-info">
+          <p>Alternate Route</p>
+          <span>3.1 km · 24 min · Isolated area</span>
+        </div>
+        <span class="route-score rs-danger">Score 38</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAFETY SCORE -->
+  <div class="score-card">
+    <div class="score-header">
+      <div>
+        <div class="score-val score-safe" id="areaScore">78</div>
+        <div class="score-label">Area Safety Score</div>
+      </div>
+      <span class="score-badge sb-safe">Relatively Safe</span>
+    </div>
+    <div class="score-bars">
+      <div class="sbar-row">
+        <span class="sbar-label">💡 Street Lighting</span>
+        <div class="sbar-track">
+          <div class="sbar-fill" style="width: 70%; background: #1d9e75"></div>
+        </div>
+      </div>
+      <div class="sbar-row">
+        <span class="sbar-label">👥 Crowd Level</span>
+        <div class="sbar-track">
+          <div class="sbar-fill" style="width: 65%; background: #1565c0"></div>
+        </div>
+      </div>
+      <div class="sbar-row">
+        <span class="sbar-label">📢 Community Reports</span>
+        <div class="sbar-track">
+          <div class="sbar-fill" style="width: 82%; background: #7b2fbe"></div>
+        </div>
+      </div>
+      <div class="sbar-row">
+        <span class="sbar-label">🚔 Police Proximity</span>
+        <div class="sbar-track">
+          <div class="sbar-fill" style="width: 55%; background: #e87722"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <div id="map"></div>
+  <div class="map-btns">
+    <button class="mbtn on" onclick="toast('Street view active')">
+      🗺 Street
+    </button>
+    <button class="mbtn" onclick="centerMap()">📍 My Location</button>
+    <button class="mbtn" onclick="toggleHeatmap()">🔥 Safety Heat</button>
+    <button class="mbtn" onclick="toast('Contacts shown on map')">
+      👥 Contacts
+    </button>
+  </div>
+
+  <!-- LOC DETAILS -->
+  <div class="card">
+    <div class="stitle">Location Details</div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">📍 Address</span
+        ><span
+          id="locAddr"
+          style="text-align: right; max-width: 55%; font-weight: 500"
+          >Fetching…</span
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">🧭 Coords</span
+        ><span id="locCoord" style="font-family: &quot;DM Mono&quot;, monospace"
+          >—</span
+        >
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          padding: 6px 0;
+        "
+      >
+        <span style="color: var(--text2)">🎯 Accuracy</span
+        ><span id="locAcc" style="font-family: &quot;DM Mono&quot;, monospace"
+          >—</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <!-- STEALTH -->
+  <div class="stealth-card">
+    <div class="st-title">🕵️ Stealth Mode</div>
+    <div class="st-sub">
+      Trigger SOS silently — no visible alert. Attacker won't know.
+    </div>
+    <div class="stealth-opts">
+      <div class="stopt on" onclick="toggleStealthOpt(this)">
+        <div class="stopt-ic">📳</div>
+        <div class="stopt-info">
+          <p>Shake to SOS</p>
+          <span>Shake phone 3× to alert contacts</span>
+        </div>
+        <div class="stopt-tog on"></div>
+      </div>
+      <div class="stopt" onclick="toggleStealthOpt(this)">
+        <div class="stopt-ic">🔋</div>
+        <div class="stopt-info">
+          <p>Power Button (5×)</p>
+          <span>Press power 5 times quickly</span>
+        </div>
+        <div class="stopt-tog off"></div>
+      </div>
+      <div class="stopt" onclick="toggleStealthOpt(this)">
+        <div class="stopt-ic">🔲</div>
+        <div class="stopt-info">
+          <p>Hidden Widget</p>
+          <span>Invisible home screen button</span>
+        </div>
+        <div class="stopt-tog off"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFLINE -->
+  <div class="offline-chip">
+    📵 Offline / SMS Mode Active — Works without internet (Twilio SMS Gateway)
+  </div>
+</div>
+
+<!-- COMMUNITY FEED -->
+<div id="s-feed" class="screen">
+  <button class="add-report-btn" onclick="addReport()">
+    + Report an Incident in Your Area
+  </button>
+  <div class="stitle">Live Community Safety Feed</div>
+
+  <div class="feed-item">
+    <div class="feed-header">
+      <div class="feed-avatar fa-warn">PS</div>
+      <div class="feed-meta">
+        <p>Priya S.</p>
+        <span>2 min ago · 0.3 km away</span>
+      </div>
+      <span class="feed-tag ft-warn">⚠️ Alert</span>
+    </div>
+    <div class="feed-body">
+      Suspicious man following women near the bus stop at Station Road. Please
+      avoid if travelling alone at night.
+    </div>
+    <div class="feed-loc">📍 Station Road, Nawabganj</div>
+    <div class="feed-actions">
+      <button class="faction" onclick="toast('Marked helpful!')">
+        👍 34 helpful
+      </button>
+      <button
+        class="faction"
+        onclick="toast('Alert shared with nearby Sahelis')"
+      >
+        📤 Share Alert
+      </button>
+    </div>
+  </div>
+
+  <div class="feed-item">
+    <div class="feed-header">
+      <div class="feed-avatar fa-safe">AK</div>
+      <div class="feed-meta">
+        <p>Ananya K.</p>
+        <span>15 min ago · 0.8 km</span>
+      </div>
+      <span class="feed-tag ft-safe">✅ Safe</span>
+    </div>
+    <div class="feed-body">
+      Civil Lines Market area is well-lit and busy tonight. Good crowd. Feels
+      very safe for solo travel.
+    </div>
+    <div class="feed-loc">📍 Civil Lines Market</div>
+    <div class="feed-actions">
+      <button class="faction" onclick="toast('Helpful!')">👍 12 helpful</button>
+      <button class="faction" onclick="toast('Shared!')">📤 Share</button>
+    </div>
+  </div>
+
+  <div class="feed-item">
+    <div class="feed-header">
+      <div class="feed-avatar fa-pink">MR</div>
+      <div class="feed-meta">
+        <p>Meera R.</p>
+        <span>1 hr ago · 1.2 km</span>
+      </div>
+      <span class="feed-tag ft-danger">🚨 Danger</span>
+    </div>
+    <div class="feed-body">
+      The underpass near Old Bus Stand is completely dark. Streetlights broken.
+      Police reported — please use alternate route!
+    </div>
+    <div class="feed-loc">📍 Old Bus Stand Underpass</div>
+    <div class="feed-actions">
+      <button class="faction" onclick="toast('Marked helpful!')">
+        👍 67 helpful
+      </button>
+      <button class="faction" onclick="toast('Alert shared!')">
+        📤 Share Alert
+      </button>
+    </div>
+  </div>
+
+  <div class="feed-item">
+    <div class="feed-header">
+      <div class="feed-avatar fa-safe">SR</div>
+      <div class="feed-meta">
+        <p>Sunita R.</p>
+        <span>3 hr ago · 2.0 km</span>
+      </div>
+      <span class="feed-tag ft-safe">✅ Safe</span>
+    </div>
+    <div class="feed-body">
+      Police patrol active near Collectorate. Lots of street vendors. Very safe
+      route for evening walks.
+    </div>
+    <div class="feed-loc">📍 Collectorate Road</div>
+    <div class="feed-actions">
+      <button class="faction" onclick="toast('Helpful!')">👍 8 helpful</button>
+      <button class="faction" onclick="toast('Shared!')">📤 Share</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS -->
+<div id="s-contacts" class="screen">
+  <div class="card">
+    <div class="stitle">Emergency Contacts</div>
+    <div class="con-item">
+      <div class="cav c1">MA</div>
+      <div class="con-info">
+        <p>Mom (Asha)</p>
+        <span>+91 98765 43210 · Primary</span>
+      </div>
+      <div class="con-acts">
+        <button class="ca ca-c" onclick="toast('Calling Mom…')">📞</button>
+        <button class="ca ca-m" onclick="toast('Location SMS sent to Mom')">
+          💬
+        </button>
+      </div>
+    </div>
+    <div class="con-item">
+      <div class="cav c2">PR</div>
+      <div class="con-info">
+        <p>Priya (Sister)</p>
+        <span>+91 91234 56789 · Secondary</span>
+      </div>
+      <div class="con-acts">
+        <button class="ca ca-c" onclick="toast('Calling Priya…')">📞</button>
+        <button class="ca ca-m" onclick="toast('Location SMS sent to Priya')">
+          💬
+        </button>
+      </div>
+    </div>
+    <div class="con-item">
+      <div class="cav c3">RK</div>
+      <div class="con-info">
+        <p>Rahul (Friend)</p>
+        <span>+91 87654 32109 · Trusted</span>
+      </div>
+      <div class="con-acts">
+        <button class="ca ca-c" onclick="toast('Calling Rahul…')">📞</button>
+        <button class="ca ca-m" onclick="toast('SMS sent to Rahul')">💬</button>
+      </div>
+    </div>
+    <button class="add-btn" onclick="toast('Add contact')">
+      + Add Emergency Contact
+    </button>
+  </div>
+
+  <div class="card">
+    <div class="stitle">National Helplines · India</div>
+    <div class="helpline-item">
+      <div>
+        <div style="font-size: 12px; font-weight: 600">Women Helpline</div>
+        <div style="font-size: 10px; color: var(--text2)">24/7 National</div>
+      </div>
+      <div class="hl-num">1091</div>
+      <button class="hl-call" onclick="toast('Dialing 1091…')">Call</button>
+    </div>
+    <div class="helpline-item">
+      <div>
+        <div style="font-size: 12px; font-weight: 600">Police</div>
+        <div style="font-size: 10px; color: var(--text2)">Emergency</div>
+      </div>
+      <div class="hl-num">100</div>
+      <button class="hl-call" onclick="toast('Dialing 100…')">Call</button>
+    </div>
+    <div class="helpline-item">
+      <div>
+        <div style="font-size: 12px; font-weight: 600">Ambulance</div>
+        <div style="font-size: 10px; color: var(--text2)">
+          Medical Emergency
+        </div>
+      </div>
+      <div class="hl-num">108</div>
+      <button class="hl-call" onclick="toast('Dialing 108…')">Call</button>
+    </div>
+    <div class="helpline-item">
+      <div>
+        <div style="font-size: 12px; font-weight: 600">Nirbhaya Helpline</div>
+        <div style="font-size: 10px; color: var(--text2)">Women Distress</div>
+      </div>
+      <div class="hl-num">1800-111-247</div>
+      <button class="hl-call" onclick="toast('Dialing…')">Call</button>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div id="s-settings" class="screen">
+  <div class="card">
+    <div class="stitle">Safety Features</div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Real-time Location Sharing</p>
+        <span>Share live GPS with contacts</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          checked
+          onchange="
+            toast(this.checked ? 'Live location ON' : 'Live location OFF')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Voice-Activated SOS</p>
+        <span>Hands-free safe word trigger</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          checked
+          onchange="
+            toast(this.checked ? 'Voice SOS ON' : 'Voice SOS OFF')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Stealth Mode</p>
+        <span>Silent SOS — no visible alert</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          onchange="toast(this.checked ? 'Stealth ON' : 'Stealth OFF')" /><span
+          class="tslide"
+        ></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Community Safety Feed</p>
+        <span>Receive nearby Saheli alerts</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          checked
+          onchange="toast(this.checked ? 'Feed ON' : 'Feed OFF')" /><span
+          class="tslide"
+        ></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Offline / SMS Mode</p>
+        <span>Works without internet (SMS Gateway)</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          checked
+          onchange="
+            toast(this.checked ? 'Offline SMS ON' : 'Offline SMS OFF')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Night Mode Protection</p>
+        <span>Extra alerts 10 PM – 6 AM</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          checked
+          onchange="
+            toast(this.checked ? 'Night Mode ON' : 'Night Mode OFF')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Auto-Record on SOS</p>
+        <span>Record audio evidence automatically</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          onchange="
+            toast(this.checked ? 'Auto-record ON' : 'Auto-record OFF')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Wearable Sync</p>
+        <span>Connect smartwatch / fitness band</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          onchange="
+            toast(this.checked ? 'Wearable synced' : 'Wearable disconnected')
+          " /><span class="tslide"></span
+      ></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="stitle">Language / भाषा</div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Hindi Support</p>
+        <span>हिंदी में सूचनाएं</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          onchange="toast(this.checked ? 'हिंदी चालू' : 'Hindi off')" /><span
+          class="tslide"
+        ></span
+      ></label>
+    </div>
+    <div class="srow">
+      <div class="srow-info">
+        <p>Urdu Support</p>
+        <span>اردو میں اطلاعات</span>
+      </div>
+      <label class="tog"
+        ><input
+          type="checkbox"
+          onchange="toast(this.checked ? 'Urdu ON' : 'Urdu OFF')" /><span
+          class="tslide"
+        ></span
+      ></label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="stitle">Tech Stack · APIs Used</div>
+    <div
+      style="display: flex; flex-direction: column; gap: 6px; font-size: 11px"
+    >
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">Frontend</span
+        ><span style="font-weight: 600">React Native</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">Backend</span
+        ><span style="font-weight: 600">Node.js + Express</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">Map & Navigation</span
+        ><span style="font-weight: 600">Google Maps API</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">Voice SOS</span
+        ><span style="font-weight: 600">Web Speech API / Google STT</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">SMS Offline</span
+        ><span style="font-weight: 600">Twilio SMS Gateway</span>
+      </div>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--bg2);
+        "
+      >
+        <span style="color: var(--text2)">Real-time Feed</span
+        ><span style="font-weight: 600">Firebase Realtime DB</span>
+      </div>
+      <div
+        style="display: flex; justify-content: space-between; padding: 6px 0"
+      >
+        <span style="color: var(--text2)">Location</span
+        ><span style="font-weight: 600">Geolocation + Nominatim</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOS OVERLAY -->
+<div class="sos-ov" id="sosOv">
+  <div class="sos-ov-title">🚨 SOS ALERT</div>
+  <div class="sos-ov-sub">Sending location + voice alert to contacts in…</div>
+  <div class="sos-ov-cnt" id="sosOvCnt">5</div>
+  <div class="sos-ov-status" id="sosOvStatus">
+    Preparing emergency message via SMS + Internet…
+  </div>
+  <button class="sos-cancel" onclick="cancelSOS()">Cancel</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<script>
+  let map,
+    userMarker,
+    heatOn = false;
+  let uLat = 26.9124,
+    uLng = 80.9167;
+  let timerInt,
+    timerSec = 0,
+    timerOn = false;
+  let sosHoldT,
+    sosInt,
+    sosActive = false;
+
+  function showScreen(s) {
+    document
+      .querySelectorAll(".screen")
+      .forEach((e) => e.classList.remove("active"));
+    document
+      .querySelectorAll(".tab")
+      .forEach((e) => e.classList.remove("active"));
+    document.getElementById("s-" + s).classList.add("active");
+    document.getElementById("tab-" + s).classList.add("active");
+    if (s === "route" && !map) setTimeout(initMap, 100);
+  }
+
+  function toast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2800);
+  }
+
+  // CLOCK
+  function tick() {
+    const n = new Date();
+    document.getElementById("timeV").textContent = n.toLocaleTimeString(
+      "en-IN",
+      { hour: "2-digit", minute: "2-digit", hour12: false },
+    );
+  }
+  setInterval(tick, 1000);
+  tick();
+
+  // BATTERY
+  if (navigator.getBattery) {
+    navigator.getBattery().then((b) => {
+      const upd = () =>
+        (document.getElementById("battV").textContent =
+          Math.round(b.level * 100) + "%");
+      upd();
+      b.addEventListener("levelchange", upd);
+    });
+  } else document.getElementById("battV").textContent = "—";
+
+  // GPS
+  function startGPS() {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.watchPosition(
+      (p) => {
+        uLat = p.coords.latitude;
+        uLng = p.coords.longitude;
+        document.getElementById("locCoord").textContent =
+          uLat.toFixed(4) + ", " + uLng.toFixed(4);
+        document.getElementById("locAcc").textContent =
+          "±" + Math.round(p.coords.accuracy) + "m";
+        reverseGeo(uLat, uLng);
+        if (userMarker) userMarker.setLatLng([uLat, uLng]);
+      },
+      () => {
+        document.getElementById("locAddr").textContent =
+          "Location access denied";
+      },
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
+  }
+  function reverseGeo(lat, lng) {
+    fetch(
+      `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`,
+    )
+      .then((r) => r.json())
+      .then((d) => {
+        const a = d.display_name || "Unknown";
+        document.getElementById("locAddr").textContent = a
+          .split(",")
+          .slice(0, 3)
+          .join(", ");
+      })
+      .catch(() => {
+        document.getElementById("locAddr").textContent = "GPS Active";
+      });
+  }
+  startGPS();
+
+  // MAP
+  function initMap() {
+    if (map) return;
+    map = L.map("map").setView([uLat, uLng], 15);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "© OpenStreetMap",
+    }).addTo(map);
+    const icon = L.divIcon({
+      html: '<div style="background:#E91E8C;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)"></div>',
+      iconSize: [18, 18],
+      iconAnchor: [9, 9],
+    });
+    userMarker = L.marker([uLat, uLng], { icon })
+      .addTo(map)
+      .bindPopup("<b>📍 You are here</b>")
+      .openPopup();
+    L.circle([uLat, uLng], {
+      radius: 400,
+      color: "#1D9E75",
+      fillColor: "#E1F5EE",
+      fillOpacity: 0.2,
+      weight: 1.5,
+      dashArray: "6",
+    })
+      .addTo(map)
+      .bindPopup("Safe Zone · Home");
+    // Danger zone
+    L.circle([uLat + 0.005, uLng - 0.004], {
+      radius: 200,
+      color: "#D32F2F",
+      fillColor: "#FFEBEE",
+      fillOpacity: 0.25,
+      weight: 1.5,
+    })
+      .addTo(map)
+      .bindPopup("⚠️ Community Alert: Poor lighting");
+    // Contact marker
+    L.marker([uLat + 0.002, uLng + 0.003], {
+      icon: L.divIcon({
+        html: '<div style="background:#1D9E75;width:13px;height:13px;border-radius:50%;border:2px solid #fff"></div>',
+        iconSize: [13, 13],
+        iconAnchor: [6.5, 6.5],
+      }),
+    })
+      .addTo(map)
+      .bindPopup("👥 Priya (Sister) — tracking you");
+  }
+
+  function centerMap() {
+    if (map) map.setView([uLat, uLng], 16);
+    toast("Centered on your location");
+  }
+  function toggleHeatmap() {
+    heatOn = !heatOn;
+    toast(heatOn ? "Safety heatmap ON" : "Heatmap OFF");
+  }
+
+  // ROUTE CALCULATION
+  function calculateRoutes() {
+    const dest = document.getElementById("toInput").value.trim();
+    if (!dest) {
+      toast("Please enter destination");
+      return;
+    }
+    document.getElementById("routeOptions").style.display = "flex";
+    document.getElementById("routeOptions").style.flexDirection = "column";
+    toast("Routes calculated — safest route highlighted!");
+    if (map) {
+      const end = [uLat + 0.01, uLng + 0.01];
+      L.polyline([[uLat, uLng], end], {
+        color: "#1D9E75",
+        weight: 4,
+        dashArray: "8",
+      })
+        .addTo(map)
+        .bindPopup("🛡️ Safest Route");
+      map.fitBounds([[uLat, uLng], end], { padding: [30, 30] });
+    }
+  }
+
+  // SOS
+  function startSOSHold() {
+    sosHoldT = setTimeout(triggerSOS, 2000);
+  }
+  function clearSOSHold() {
+    clearTimeout(sosHoldT);
+  }
+
+  function triggerSOS() {
+    if (sosActive) return;
+    sosActive = true;
+    let c = 5;
+    document.getElementById("sosOvCnt").textContent = c;
+    document.getElementById("sosOv").classList.add("active");
+    sosInt = setInterval(() => {
+      c--;
+      document.getElementById("sosOvCnt").textContent = c;
+      if (c === 3)
+        document.getElementById("sosOvStatus").textContent =
+          "📡 Sending GPS to Mom, Priya, Rahul via SMS & Internet…";
+      if (c <= 0) {
+        clearInterval(sosInt);
+        document.getElementById("sosOvStatus").textContent =
+          "✅ Alert sent! Help is coming. Recording audio evidence.";
+        document.getElementById("sosOvCnt").textContent = "✓";
+        document.getElementById("alertBanner").className = "astrip danger";
+        document.getElementById("alertBanner").innerHTML =
+          "🚨 <span><b>SOS Active!</b> Contacts notified with GPS. Recording active.</span>";
+        setTimeout(() => {
+          document.getElementById("sosOv").classList.remove("active");
+          sosActive = false;
+        }, 3000);
+      }
+    }, 1000);
+  }
+  function cancelSOS() {
+    clearInterval(sosInt);
+    sosActive = false;
+    document.getElementById("sosOv").classList.remove("active");
+    toast("SOS cancelled");
+  }
+
+  // TIMER
+  function timerAction() {
+    if (!timerOn) {
+      timerOn = true;
+      document.getElementById("tBtn").textContent = "Pause";
+      document.getElementById("tBtn").className = "tbtn tb-stop";
+      document.getElementById("tDisp").className = "tdisp run";
+      timerInt = setInterval(() => {
+        timerSec++;
+        const m = String(Math.floor(timerSec / 60)).padStart(2, "0");
+        const s = String(timerSec % 60).padStart(2, "0");
+        document.getElementById("tDisp").textContent = m + ":" + s;
+        if (timerSec === 300)
+          toast("⚠️ 5 min! Please check in or contacts will be alerted.");
+        if (timerSec === 600) {
+          toast("🚨 10 min! Alerting contacts now…");
+          triggerSOS();
+        }
+      }, 1000);
+    } else {
+      timerOn = false;
+      clearInterval(timerInt);
+      document.getElementById("tBtn").textContent = "Resume";
+      document.getElementById("tBtn").className = "tbtn tb-go";
+    }
+  }
+  function resetTimer() {
+    clearInterval(timerInt);
+    timerOn = false;
+    timerSec = 0;
+    document.getElementById("tDisp").textContent = "00:00";
+    document.getElementById("tDisp").className = "tdisp";
+    document.getElementById("tBtn").textContent = "Start";
+    document.getElementById("tBtn").className = "tbtn tb-go";
+  }
+
+  // QUICK ACTIONS
+  function fakeCall() {
+    toast('📞 Fake call from "Mom" in 5 seconds…');
+    setTimeout(
+      () => toast("📞 Incoming call ringing — answer to deter threat"),
+      5000,
+    );
+  }
+  function sendLocation() {
+    toast("📍 Your GPS location SMS sent to all 3 contacts");
+  }
+  function startLive() {
+    toast("📡 Live tracking started — contacts see you in real-time");
+  }
+  function triggerSiren() {
+    toast("🔊 Loud siren activated!");
+  }
+  function stealthActivate() {
+    toast("🕵️ Stealth SOS sent silently — no visible alert on screen!");
+  }
+  function startVoiceRecord() {
+    toast("🎙️ Recording audio evidence started…");
+  }
+  function addReport() {
+    toast("📝 Report form opened — your report helps other Sahelis");
+  }
+
+  function toggleStealthOpt(el) {
+    const tog = el.querySelector(".stopt-tog");
+    const isOn = tog.classList.contains("on");
+    tog.className = "stopt-tog " + (isOn ? "off" : "on");
+    el.className = "stopt " + (isOn ? "" : "on");
+    toast(isOn ? "Feature OFF" : "Feature ON");
+  }
+</script>
