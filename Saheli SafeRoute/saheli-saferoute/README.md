@@ -83,10 +83,6 @@ npm run dev        # development (nodemon)
 npm start          # production
 ```
 
-Server runs at: **http://localhost:5000**
-
----
-
 ## 🔑 API Endpoints (24 Total)
 
 ### Auth
