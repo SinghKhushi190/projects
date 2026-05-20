@@ -181,7 +181,7 @@ GET   /api/settings/timer/active    Active timer status
 ## 🌱 Demo Credentials (after seeding)
 
 ```
-Phone    : +919876543210
+Phone    : +918084189925
 Password : saheli123
 Name     : Khushi Kumari
 ```
